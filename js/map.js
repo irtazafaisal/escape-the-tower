@@ -4,10 +4,14 @@ function generateLevel(){
     });
 
     generateMonsters();
+     // key implementation
+    randomPassableTile().key = true;
                                            
     for(let i=0;i<3;i++){                                         
         randomPassableTile().treasure = true;                            
     }
+
+   
 }
 
 function generateTiles(){
@@ -54,9 +58,17 @@ function randomPassableTile(){
 function generateMonsters(){
     monsters = [];
     let numMonsters = level+1;
-    for(let i=0;i<numMonsters;i++){
-        spawnMonster();
+    if(numMonsters > 4){
+        --numMonsters;
+        for(let i=0;i<numMonsters;i++){
+            spawnMonster(); // Recent Change make monsters limited  
+        }
+    } else{
+        for(let i=0;i<numMonsters;i++){
+            spawnMonster(); // Recent Change make monsters limited  
+        }
     }
+
 }
 
 function spawnMonster(){

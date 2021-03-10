@@ -52,6 +52,10 @@ class Tile{
         if(this.treasure){                      
             drawSprite(12, this.x, this.y);                                             
         }
+        // key implementation
+        if(this.key){                      
+            drawSprite(13, this.x, this.y);                                             
+        }
     }
 }
 
@@ -62,9 +66,16 @@ class Floor extends Tile{
 
     stepOn(monster){
         if(monster.isPlayer && this.treasure){   
-            score++;
+            score+= 500;
             playSound("treasure");            
             this.treasure = false;
+            //spawnMonster();
+        }
+
+        if(monster.isPlayer && this.key){   
+            key++;
+            playSound("treasure");            
+            this.key = false;
             spawnMonster();
         }
     }
@@ -82,13 +93,17 @@ class Exit extends Tile{
     }
 
     stepOn(monster){
-        if(monster.isPlayer){
+        if(monster.isPlayer && key>=1){
             playSound("newLevel"); 
             if(level == numLevels){
+                score += 10000;
                 addScore(score, true); 
                 showTitle();
+                key=0;
             }else{
+                score += 1000;
                 level++;
+                key=0;
                 startLevel(Math.min(maxHp, player.hp+1));
             }
         }

@@ -89,12 +89,15 @@ class Monster{
         this.hp -= damage;
         if(this.hp <= 0){
             this.die();
+            score += 1000;
         }
 
         if(this.isPlayer){                                                     
-            playSound("hit1");                                              
+            playSound("hit1");
+            score += 100;                                              
         }else{                                                       
-            playSound("hit2");                                              
+            playSound("hit2");
+            score -= 100;                                              
         }
     }
 

@@ -84,13 +84,14 @@ function showTitle(){
 function startGame(){                                           
     level = 1;
     score = 0;
+    key = 0;
     startLevel(startingHp);
 
     gameState = "running";
 }
 
 function startLevel(playerHp){ 
-    spawnRate = 15;              
+    spawnRate = 10;              
     spawnCounter = spawnRate;  
 
     generateLevel();
