@@ -91,7 +91,7 @@ function startGame(){
 }
 
 function startLevel(playerHp){ 
-    spawnRate = 10;              
+    spawnRate = 15;              
     spawnCounter = spawnRate;  
 
     generateLevel();
