@@ -41,8 +41,13 @@ function draw(){
 
         player.draw();
 
-        drawText("Level: "+level, 30, false, 40, "violet");
+        drawText("Room: "+level, 30, false, 40, "violet");
         drawText("Score: "+score, 30, false, 70, "violet");
+
+        for(let i=0; i<player.spells.length; i++){
+            let spellText = (i+1) + ") " + (player.spells[i] || "");                        
+            drawText(spellText, 20, false, 110+i*40, "aqua");        
+        }
     }
 }
 
@@ -54,6 +59,7 @@ function tick(){
             monsters.splice(k,1);
         }
     }
+    
 
     if(player.dead){    
         addScore(score, false);
@@ -67,6 +73,7 @@ function tick(){
         spawnCounter = spawnRate;
         spawnRate--;
     }
+
 }
 
 function showTitle(){                                          
@@ -84,14 +91,16 @@ function showTitle(){
 function startGame(){                                           
     level = 1;
     score = 0;
+    tillSpecial = 0;
     key = 0;
+    numSpells = 0;
     startLevel(startingHp);
 
     gameState = "running";
 }
 
 function startLevel(playerHp){ 
-    spawnRate = 15;              
+    spawnRate = 10;              
     spawnCounter = spawnRate;  
 
     generateLevel();
